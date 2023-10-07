@@ -7,7 +7,11 @@ sessionController.isLoggedIn = async (req, res, next) => {
   const cookie = req.cookie;
   try {
     const response = await Session.find({'cookieId': `${cookie}`});
-
+    if (response) {
+      return next();
+    } else {
+      res.redirect(200, '/signup');
+    }
   } catch (error) {
     return next({
       log: 'Express error handler caught startSession middleware error',
@@ -15,19 +19,20 @@ sessionController.isLoggedIn = async (req, res, next) => {
       message: 'Bad request: failed to start session'
     });
   }
-};
+}; 
 
 sessionController.startSession = async (req, res, next) => {
+  const { id } = res.locals.user;
   try {
     const session = await new Session({
-      'cookieId': `${res.locals.id}`
+      'cookieId': `${id}`
     });
-    res.locals.session = session;
+    session.save();
     return next();
   } catch (error) {
     return next({
       log: 'Express error handler caught startSession middleware error',
-      status: 400,
+      status: 500,
       message: 'Bad request: failed to start session'
     });
   }
