@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { AuthContainer, ProfileContainer, HomeContainer } from './containers';
+import AuthContainer from './containers/AuthContainer';
+import HomeContainer from './containers/HomeContainer';
+import ProfileContainer from './containers/ProfileContainer';
 
 export default function App() {
   return (
