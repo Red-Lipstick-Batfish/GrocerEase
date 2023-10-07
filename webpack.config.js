@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const {env} = require('process');
 
 module.exports = {
   entry: [
@@ -12,7 +13,7 @@ module.exports = {
     filename: 'bundle.js',
   },
   devtool: 'eval-source-map',
-  mode: 'development',
+  mode: env.NODE_ENV,
   devServer: {
     host: 'localhost',
     port: 8080,
@@ -55,7 +56,7 @@ module.exports = {
       {
         test: /.(css|scss)$/,
         exclude: /node_modules/,
-        use: ['style-loader', 'css-loader'],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(png|jpg|gif|woff|woff2|eot|ttf|svg|ico)$/,
