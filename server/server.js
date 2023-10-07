@@ -23,12 +23,31 @@ mongoose.connect(MONGO_URI, {
 
 app.use(express.json());
 // app.use(express.urlencoded());
-app.use(cookieParser())
+app.use(cookieParser());
 
-app.use('/test', userController.createUser, (req, res) => {
-  console.log('new user created:');
-  return res.status(200).json(res.locals.user);
-});
+// app.use('/test', userController.createUser, (req, res) => {
+//   console.log('new user created:');
+//   return res.status(200).json(res.locals.user);
+// });
+
+app.post('/signup',
+  userController.createUser,
+  cookieController.setSSIDCookie,
+  sessionController.startSession,
+  (req, res) => {
+    // redirects to homepage when they sucessfully create an account
+    res.redirect(200, '/profile');
+  }
+);
+
+app.post('/login',
+  userController.verifyUser,
+  cookieController.setSSIDCookie,
+  sessionController.startSession,
+  (req, res) => {
+    res.redirect(200, '/home');
+  }
+);
 
 // serves index.html to frontend
 app.get('/', (req, res) => {
@@ -39,10 +58,14 @@ app.get('/', (req, res) => {
 
 // global error handler
 app.use((err, req, res, next) => {
-  res.locals.message = err.message;
-  console.log('ERROR: ', err);
-  const errorStatus = err.status || 500;
-  return res.status(errorStatus).send(res.locals.message);
+  const defaultErr = {
+    log: 'Express error handler caught unknown middleware error',
+    status: 500,
+    message: { err: 'An error occurred' },
+  };
+  const errorObj = Object.assign({}, defaultErr, err);
+  console.log(errorObj.log);
+  return res.status(errorObj.status).json(errorObj.message);
 });
 
 
