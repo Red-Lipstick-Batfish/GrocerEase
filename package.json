@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server/server.js",
+    "build": "NODE_ENV=production webpack",
+    "dev": "NODE_ENV=development concurrently \"node server/server.js\" \"webpack serve --open\""
   },
   "keywords": [],
   "author": "",
@@ -18,7 +20,9 @@
     "react-router-dom": "^6.16.0",
     "redux": "^4.2.1",
     "redux-devtools-extension": "^2.13.9",
-    "redux-thunk": "^2.4.2"
+    "redux-thunk": "^2.4.2",
+    "sass": "^1.69.0",
+    "sass-loader": "^13.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.23.0",
