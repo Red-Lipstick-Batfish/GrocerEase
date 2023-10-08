@@ -1,10 +1,9 @@
-import React from "react";
+import React from 'react';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
-import reducers from './reducers/index';
+import reducers from './reducers/index.js';
 // import { load } from './actions/actions'
-
 
 // create state-store using thunk middleware for async functional
 const store = createStore(
