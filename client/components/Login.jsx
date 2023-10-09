@@ -6,6 +6,7 @@ const Login = ({
   updateUsername,
   updatePassword,
   logSwitch,
+  updateAuthStep,
 }) => {
   if (newUser) {
     return (
@@ -14,7 +15,7 @@ const Login = ({
         <form
           onSubmit={(e) => {
             e.preventDefault;
-            authSubmit();
+            updateAuthStep();
           }}
         >
           <label>
