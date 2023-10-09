@@ -81,7 +81,7 @@ const userController = {
             });
             // if passwords match, save returned user schema for middlewares
           } else {
-            res.locals.user = user.id;
+            res.locals.user = user;
             return next();
           }
         } catch (err) {
