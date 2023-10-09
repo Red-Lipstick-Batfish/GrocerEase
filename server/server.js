@@ -11,7 +11,9 @@ const apiController = require('./controller/apiController');
 const app = express();
 const PORT = 3000;
 
+
 const MONGO_URI = process.env.MONGO_URI;
+
 
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
@@ -54,6 +56,7 @@ app.get('/', cookieController.setCookie, (req, res) => {
 app.post('/api', apiController.getData, (req, res) => {
   res.status(200).json(res.locals);
 });
+
 
 // global error handler
 app.use((err, req, res, next) => {
