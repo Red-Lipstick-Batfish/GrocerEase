@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const userController = require('./controller/userController');
 const cookieController = require('./controller/cookieController');
 const sessionController = require('./controller/sessionController');
+const apiController = require('./controller/apiController');
 
 const app = express();
 const PORT = 3000;
@@ -36,7 +37,7 @@ app.post('/signup',
   cookieController.setSSIDCookie,
   (req, res) => {
     // redirects to homepage when they sucessfully create an account
-    res.redirect(200, '/profile');
+    res.redirect(200, '/');
   }
 );
 
@@ -45,16 +46,18 @@ app.post('/login',
   sessionController.startSession,
   cookieController.setSSIDCookie,
   (req, res) => {
-    res.redirect(200, '/home');
+    res.redirect(200, '/');
   }
 );
 
 // serves index.html to frontend
-app.get('/', (req, res) => {
-  console.log('serving html file to frontend');
+app.get('/', cookieController.setCookie, (req, res) => {
   res.sendFile(path.resolve(__dirname, '../client/index.html'));
 });
 
+app.post('/api', apiController.getData, (req, res) => {
+
+});
 
 // global error handler
 app.use((err, req, res, next) => {
