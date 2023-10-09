@@ -14,27 +14,29 @@ cookieController.setCookie = (req, res, next) => {
 cookieController.setSSIDCookie = async (req, res, next) => {
   const { id } = res.locals.user;
   // pull id from res.locals
+  console.log('id: ', id);
+  console.log('_id: ', res.locals.user._id);
   try {
     // looks to see if session exists
-    const response = await Session.find({'cookieId': `${id}`});
+    const response = await Session.find({ cookieId: `${id}` });
     // if cannot find session
     if (!response) {
       return next({
         log: 'Express error handler caught setSSIDCookie middleware error',
         status: 403,
-        message: 'Bad request: Bad session'
+        message: 'Bad request: Bad session',
       });
     }
     // creates a cookie based on the ssid
-    res.cookie('ssid', `${response.cookieId}`, {
-      httpOnly: true
+    res.cookie('ssid', `${id}`, {
+      httpOnly: true,
     });
     return next();
   } catch (error) {
     return next({
       log: 'Express error handler caught setSSIDCookie middleware error',
       status: 403,
-      message: 'Bad request: Bad session'
+      message: 'Bad request: Bad session',
     });
   }
 };
