@@ -32,8 +32,8 @@ app.use(cookieParser());
 
 app.post('/signup',
   userController.createUser,
-  cookieController.setSSIDCookie,
   sessionController.startSession,
+  cookieController.setSSIDCookie,
   (req, res) => {
     // redirects to homepage when they sucessfully create an account
     res.redirect(200, '/profile');
@@ -42,8 +42,8 @@ app.post('/signup',
 
 app.post('/login',
   userController.verifyUser,
-  cookieController.setSSIDCookie,
   sessionController.startSession,
+  cookieController.setSSIDCookie,
   (req, res) => {
     res.redirect(200, '/home');
   }

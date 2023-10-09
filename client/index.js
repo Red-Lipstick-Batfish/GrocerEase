@@ -10,9 +10,8 @@ const root = createRoot(document.getElementById('app'));
 
 root.render(
   <BrowserRouter>
-    <Provider store="store">
+    <Provider store={store}>
       <App />
     </Provider>
   </BrowserRouter>
 );
-
