@@ -8,8 +8,8 @@ apiController.getData = async (req, res, next) => {
   const cookie = req.cookie;
 
   // api authentications to include in the query string
-  const appID = '1a87f6bd';
-  const appKEY = '36ff735762ec591efcae289015990ac3';
+  const appID = process.env.appID;
+  const appKEY = process.env.appKEY;
 
   //query string
   const urlString = 'https://api.edamam.com/api/recipes/v2?type=public' 
@@ -38,7 +38,7 @@ apiController.getData = async (req, res, next) => {
     queries += `&dishType=${dishType[0].split(' ').join('%20')}`;
 
   } catch (error) {
-    res.redirect(200, '/auth');
+    return res.redirect(200, '/auth');
   }
 
   // fetch recipe from API
@@ -52,15 +52,23 @@ apiController.getData = async (req, res, next) => {
     // ingredientLines (array), recipe (object) properties: label (dish name), image, yield (object)
     res.locals.ingredients = keyInfo[randomNum].ingredientLines;
     res.locals.recipeName = keyInfo[randomNum].recipe.label;
-    res.locals.recipeImageRef = keyInfo[randomNum].recipe.image;
+    // if API fetch does not have a large thumbnail image, use the standard size image url
+    if (!keyInfo[randomNum].recipe.images.LARGE) {
+      res.locals.recipeImageRef = keyInfo[randomNum].recipe.image;
+    }
+    res.locals.recipeImageRef = keyInfo[randomNum].recipe.images.LARGE.url;
     res.locals.servingSize = keyInfo[randomNum].yield;
+    res.locals.instructions = keyInfo.url;
+    return next();
 
   } catch (err) {
-
+    return next({
+      log: 'Error in apiController.getData',
+      status: 400,
+      message: { err: 'recipe not found' },
+    });
   }
 
-  
-  return next();
 };
 
 module.exports = apiController;

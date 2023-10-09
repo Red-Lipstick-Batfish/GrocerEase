@@ -11,7 +11,7 @@ const apiController = require('./controller/apiController');
 const app = express();
 const PORT = 3000;
 
-const MONGO_URI = 'mongodb+srv://Wilson:P2M1y1F8LkPuidoT@pokemonproject.l7nypzy.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp';
+const MONGO_URI = process.env.MONGO_URI;
 
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
@@ -26,10 +26,6 @@ app.use(express.json());
 // app.use(express.urlencoded());
 app.use(cookieParser());
 
-// app.use('/test', userController.createUser, (req, res) => {
-//   console.log('new user created:');
-//   return res.status(200).json(res.locals.user);
-// });
 
 app.post('/signup',
   userController.createUser,
@@ -56,7 +52,7 @@ app.get('/', cookieController.setCookie, (req, res) => {
 });
 
 app.post('/api', apiController.getData, (req, res) => {
-
+  res.status(200).json(res.locals);
 });
 
 // global error handler
