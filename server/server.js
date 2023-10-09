@@ -10,7 +10,7 @@ const sessionController = require('./controller/sessionController');
 const app = express();
 const PORT = 3000;
 
-const MONGO_URI = 'mongodb+srv://Wilson:P2M1y1F8LkPuidoT@pokemonproject.l7nypzy.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp';
+const MONGO_URI = 'mongodb+srv://peterchung716:AbL6VhtN63xVJANx@cluster0.k9n2bsh.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp';
 
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
@@ -54,6 +54,8 @@ app.get('/', (req, res) => {
   console.log('serving html file to frontend');
   res.sendFile(path.resolve(__dirname, '../client/index.html'));
 });
+
+// app.post ('/api')
 
 
 // global error handler
