@@ -1,0 +1,4 @@
+export const AUTH_SUBMIT = 'AUTH_SUBMIT';
+export const UPDATE_USERNAME = 'UPDATE_USERNAME';
+export const UPDATE_PASSWORD = 'UPDATE_PASSWORD';
+export const CHANGE_AUTH = 'CHANGE_AUTH';
