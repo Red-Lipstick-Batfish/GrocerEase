@@ -10,7 +10,7 @@ export default function App() {
       <Routes>
         <Route path='/auth' element={<AuthContainer />} />
         <Route path='/profile' element={<ProfileContainer />} />
-        <Route path='/home' element={<HomeContainer />} />
+        <Route path='/' element={<HomeContainer />} />
       </Routes>
     </div>
   );
