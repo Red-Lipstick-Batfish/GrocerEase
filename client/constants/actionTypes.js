@@ -9,3 +9,6 @@ export const UPDATE_CUISINE = 'UPDATE_CUISINE';
 export const UPDATE_MEAL = 'UPDATE_MEAL';
 export const UPDATE_DISH = 'UPDATE_DISH';
 export const DISPLAY_RECIPES = 'DISPLAY_RECIPES';
+export const AUTH_STEP = 'AUTH_STEP';
+export const UPDATE_RESTRICTIONS = 'UPDATE_RESTRICTIONS';
+

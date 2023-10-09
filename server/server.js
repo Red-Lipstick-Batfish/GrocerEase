@@ -6,11 +6,14 @@ const cookieParser = require('cookie-parser');
 const userController = require('./controller/userController');
 const cookieController = require('./controller/cookieController');
 const sessionController = require('./controller/sessionController');
+const apiController = require('./controller/apiController');
 
 const app = express();
 const PORT = 3000;
 
-const MONGO_URI = 'mongodb+srv://Wilson:P2M1y1F8LkPuidoT@pokemonproject.l7nypzy.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp';
+
+const MONGO_URI = process.env.MONGO_URI;
+
 
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
@@ -25,10 +28,6 @@ app.use(express.json());
 // app.use(express.urlencoded());
 app.use(cookieParser());
 
-// app.use('/test', userController.createUser, (req, res) => {
-//   console.log('new user created:');
-//   return res.status(200).json(res.locals.user);
-// });
 
 app.post('/signup',
   userController.createUser,
@@ -36,7 +35,7 @@ app.post('/signup',
   cookieController.setSSIDCookie,
   (req, res) => {
     // redirects to homepage when they sucessfully create an account
-    res.redirect(200, '/profile');
+    res.redirect(200, '/');
   }
 );
 
@@ -45,14 +44,17 @@ app.post('/login',
   sessionController.startSession,
   cookieController.setSSIDCookie,
   (req, res) => {
-    res.redirect(200, '/home');
+    res.redirect(200, '/');
   }
 );
 
 // serves index.html to frontend
-app.get('/', (req, res) => {
-  console.log('serving html file to frontend');
+app.get('/', cookieController.setCookie, (req, res) => {
   res.sendFile(path.resolve(__dirname, '../client/index.html'));
+});
+
+app.post('/api', apiController.getData, (req, res) => {
+  res.status(200).json(res.locals);
 });
 
 
