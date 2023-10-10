@@ -19,12 +19,14 @@ const AuthContainer = (props) => {
     console.log(props);
     return (
       <div className='main-container'>
+        <navBar />
         <Login {...props} />
       </div>
     );
   } else if (props.authStep === 2) {
     return (
       <div className='main-container'>
+        <navBar />
         <Profile {...props} />
       </div>
     );

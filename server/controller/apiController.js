@@ -1,8 +1,7 @@
 const apiController = {};
 const User = require('../models/usersModel');
-
+require('dotenv').config();
 apiController.getData = async (req, res, next) => {
-    
   // data being passed to the backend
   const { ingr, cuisineType, mealType, dishType } = req.body;
   const cookie = req.cookie;
@@ -11,20 +10,19 @@ apiController.getData = async (req, res, next) => {
   const appID = process.env.appID;
   const appKEY = process.env.appKEY;
 
-  //query string
-  const urlString = 'https://api.edamam.com/api/recipes/v2?type=public' 
-    + ingredients
-    + `app_id=${appID}&app_key=${appKEY}` 
-    + queries;
-
   // joins the ingredients
   let queries;
   const ingredients = `&q=${ingr.join('%2C%20')}`;
-    
+
+  //https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=43a19eff&app_key=6e307c358a78b63cf5043926e57a6eca&ingr=4%2B&cuisineType=American&mealType=Lunch&dishType=Main%20course
+  
+  //http://localhost:8080/?ingredient=1-5&cuisine=American&mealType=Breakfast&dishType=Main+Course
+
+
   // adds restrictions
   try {
-    const response = await User.find({id: cookie});
-    response.restrictions.forEach(element => {
+    const response = await User.find({ id: cookie });
+    response.restrictions.forEach((element) => {
       queries += `&health=${element}`;
     });
 
@@ -36,10 +34,16 @@ apiController.getData = async (req, res, next) => {
 
     // adds dish type to the query
     queries += `&dishType=${dishType[0].split(' ').join('%20')}`;
-
   } catch (error) {
     return res.redirect(200, '/auth');
   }
+
+  //query string
+  const urlString =
+    'https://api.edamam.com/api/recipes/v2?type=public' +
+    ingredients +
+    `app_id=${appID}&app_key=${appKEY}` +
+    queries;
 
   // fetch recipe from API
   try {
@@ -60,8 +64,8 @@ apiController.getData = async (req, res, next) => {
     res.locals.recipeImageRef = keyInfo[randomNum].recipe.images.LARGE.url;
     res.locals.servingSize = keyInfo[randomNum].yield;
     res.locals.instructions = keyInfo.url;
-    return next();
 
+    return next();
   } catch (err) {
     return next({
       log: 'Error in apiController.getData',
@@ -69,7 +73,6 @@ apiController.getData = async (req, res, next) => {
       message: { err: 'recipe not found' },
     });
   }
-
 };
 
 module.exports = apiController;
