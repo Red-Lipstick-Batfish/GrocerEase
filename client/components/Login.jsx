@@ -12,30 +12,26 @@ const Login = ({
     return (
       <div className='login-wrap'>
         <h1>Create an Account</h1>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault;
-            updateAuthStep();
-          }}
-        >
-          <label>
-            <p>Username</p>
-            <input
-              type='text'
-              onChange={(e) => updateUsername(e.target.value)}
-            />
-          </label>
-          <label>
-            <p>Password</p>
-            <input
-              type='password'
-              onChange={(e) => updatePassword(e.target.value)}
-            />
-          </label>
-          <div>
-            <button type='submit'>Sign Up</button>
-          </div>
-        </form>
+        <label>
+          <p>Username</p>
+          <input type='text' onChange={(e) => updateUsername(e.target.value)} />
+        </label>
+        <label>
+          <p>Password</p>
+          <input
+            type='password'
+            onChange={(e) => updatePassword(e.target.value)}
+          />
+        </label>
+        <div>
+          <button
+            onClick={(e) => {
+              updateAuthStep();
+            }}
+          >
+            Sign Up
+          </button>
+        </div>
         <div>
           <p>Already a member? </p>
           <button onClick={() => logSwitch()}>Log In</button>
@@ -48,7 +44,6 @@ const Login = ({
         <h1>Sign In</h1>
         <form
           onSubmit={(e) => {
-            e.preventDefault;
             authSubmit();
           }}
         >

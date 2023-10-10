@@ -4,12 +4,12 @@ import AuthContainer from './containers/AuthContainer.jsx';
 import HomeContainer from './containers/HomeContainer.jsx';
 import ProfileContainer from './containers/ProfileContainer.jsx';
 
+
 export default function App() {
   return (
     <div className='App'>
       <Routes>
         <Route path='/auth' element={<AuthContainer />} />
-        <Route path='/profile' element={<ProfileContainer />} />
         <Route path='/' element={<HomeContainer />} />
       </Routes>
     </div>

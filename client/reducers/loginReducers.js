@@ -1,6 +1,5 @@
 /* eslint-disable no-case-declarations */
 /* eslint-disable indent */
-import { authStep } from '../actions/loginActions.js';
 import * as types from '../constants/actionTypes.js';
 
 const initialState = {
