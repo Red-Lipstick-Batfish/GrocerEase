@@ -82,6 +82,7 @@ const userController = {
             });
             // if passwords match, save returned user schema for middlewares
           } else {
+            console.log('username and password match');
             res.locals.user = user;
             return next();
           }

@@ -24,7 +24,7 @@ export const authSubmit = () => (dispatch, getState) => {
       .post('/login', userAuth)
       .then((response) => {
         console.log('this is the response status: ' + response.status);
-        if (response.status === 200) {
+        if (response.status) {
           window.location = '/';
           dispatch({ type: types.AUTH_SUBMIT });
         }

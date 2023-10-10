@@ -6,7 +6,8 @@ import { bindActionCreators } from 'redux';
 import * as actions from '../actions/loginActions.js';
 
 // add state and dispatch functions to props be used in Login component
-const mapStateToProps = ({ recipe: { ingr } }) => ({
+const mapStateToProps = ({ recipe: { currIngr, ingr } }) => ({
+  currIngr,
   ingr
 });
 
