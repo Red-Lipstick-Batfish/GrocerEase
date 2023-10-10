@@ -19,7 +19,7 @@ When users attempted to sign up, they would first be routed to the createUser mi
 
 Next middleware starts a session based on the user id.
 
-Last middleware checks to make sure the session has not expired yet and sets the user id as an ssid cookie in the browser.
+Last middleware checks to make sure the session has not expired yet and sets the user id as an ssid cookie in the browser..
 
 Verify user middleware checks for the user in the database. If not found, reroutes user to sign up page.
 If user was found, start a session, and reroute to the homepage.
