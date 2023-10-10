@@ -16,7 +16,7 @@ const MONGO_URI = env.MONGO_URI;
 
 mongoose
   .connect(
-    'mongodb+srv://dominicjkenny:niS46aE6KvqUcqUp@cluster0.6g2avki.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp',
+    env.MONGO_URI,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
