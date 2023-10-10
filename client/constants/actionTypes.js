@@ -1,0 +1,14 @@
+export const AUTH_SUBMIT = 'AUTH_SUBMIT';
+export const UPDATE_USERNAME = 'UPDATE_USERNAME';
+export const UPDATE_PASSWORD = 'UPDATE_PASSWORD';
+export const CHANGE_AUTH = 'CHANGE_AUTH';
+export const UPDATE_INGR = 'UPDATE_INGR';
+export const ADD_INGR = 'ADD_INGR';
+export const REMOVE_INGR = 'REMOVE_INGR';
+export const UPDATE_CUISINE = 'UPDATE_CUISINE';
+export const UPDATE_MEAL = 'UPDATE_MEAL';
+export const UPDATE_DISH = 'UPDATE_DISH';
+export const DISPLAY_RECIPES = 'DISPLAY_RECIPES';
+export const AUTH_STEP = 'AUTH_STEP';
+export const UPDATE_RESTRICTIONS = 'UPDATE_RESTRICTIONS';
+
