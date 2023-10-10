@@ -12,7 +12,7 @@ const app = express();
 const PORT = 3000;
 
 
-const MONGO_URI = process.env.MONGO_URI;
+const MONGO_URI = 'mongodb+srv://Wilson:P2M1y1F8LkPuidoT@pokemonproject.l7nypzy.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp'
 
 
 mongoose.connect(MONGO_URI, {

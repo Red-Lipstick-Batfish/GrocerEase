@@ -8,8 +8,8 @@ apiController.getData = async (req, res, next) => {
   const cookie = req.cookie;
 
   // api authentications to include in the query string
-  const appID = process.env.appID;
-  const appKEY = process.env.appKEY;
+  const appID = '1a87f6bd'
+  const appKEY = '36ff735762ec591efcae289015990ac3'
 
   //query string
   const urlString = 'https://api.edamam.com/api/recipes/v2?type=public' 
