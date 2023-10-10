@@ -45,6 +45,7 @@ apiController.getData = async (req, res, next) => {
   try {
     const response = await fetch(urlString);
     const fetchedData = response.json();
+    // Fetched ob
     const keyInfo = fetchedData.hits;
     // response.to
     const maxNum = fetchedData.to;

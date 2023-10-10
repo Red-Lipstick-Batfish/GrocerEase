@@ -9,29 +9,46 @@ const Form = ({
   updateCuisine,
   updateMeal,
   updateDish,
-  ingr
+  ingr,
+  removeIngr,
+  currIngr
 }) => {
-  const ingrComponentArr = ingr.map(el => {
-    <Ingredient 
-      value={ingr[el]}
-    />;
-  });
+  // const ingrComponentArr = ingr.map((el, idx) => {
+  //   <Ingredient
+  //     value={ingr[el]}
+  //     id={'ingredient' + idx}
+  //   />;
+  // });
 
   return (
     <div>
       <form>
-        <label htmlFor='ingredient'>
-          Include this ingredient: 
-        </label>
-        <input id='ingredient' name='ingredient' onChange={(e) => updateIngr(e.target.value)} placeholder='Potato' required type='text'></input>
-        <button type='button' onClick={() => addIngr(document.querySelector('#ingredient').value)}>Add Ingredient</button>
+        <label htmlFor='ingredient'>Include this ingredient:</label>
+        <input
+          id='ingredient'
+          name='ingredient'
+          onChange={(e) => updateIngr(e.target.value)}
+          placeholder='Potato'
+          required
+          type='text'
+        ></input>
+        <button
+          type='button'
+          onClick={() => addIngr(document.querySelector('#ingredient').value)}
+        >
+          Add Ingredient
+        </button>
         <br></br>
-        {ingrComponentArr}
+        {ingr.map((el, idx) => {
+          <Ingredient value={el} id={'ingredient' + idx} />;
+        })}
         <br></br>
-        <label htmlFor='cuisine'>
-          Cuisine: 
-        </label>
-        <select id='cuisine' name='cuisine' onChange={(e) => updateUsername(e.target.value)}>
+        <label htmlFor='cuisine'>Cuisine:</label>
+        <select
+          id='cuisine'
+          name='cuisine'
+          onChange={(e) => updateCuisine(e.target.value)}
+        >
           <option value=''>--Choose an option--</option>
           <option value='American'>American</option>
           <option value='Asian'>Asian</option>
@@ -49,9 +66,7 @@ const Form = ({
           <option value='South East Asia'>South East Asian</option>
         </select>
         <br></br>
-        <label htmlFor='mealType'>
-          Meal type: 
-        </label>
+        <label htmlFor='mealType'>Meal type:</label>
         <select id='mealType' name='mealType'>
           <option value=''>--Choose an option--</option>
           <option value='Breakfast'>Breakfast</option>
@@ -60,9 +75,7 @@ const Form = ({
           <option value='Snack'>Snack</option>
         </select>
         <br></br>
-        <label htmlFor='dishType'>
-          Dish type: 
-        </label>
+        <label htmlFor='dishType'>Dish type:</label>
         <select id='dishType' name='dishType'>
           <option value=''>--Choose an option--</option>
           <option value='Main Course'>Main</option>

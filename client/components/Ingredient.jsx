@@ -1,14 +1,14 @@
-import { name } from "file-loader";
 import React from "react";
-import { ids } from "webpack";
 
 const Ingredient = ({
-  value
+  value,
+  removeIngr,
+  id
 }) => {
   return (
-    <div id='ingredient'>
+    <div id={id}>
       <p>{value}</p>
-      <button {/* onClick={} */} type='button'>Remove</button>
+      <button onClick={() => removeIngr(document.querySelector('#id'))}type='button'>Remove</button>
     </div>
   );
 };

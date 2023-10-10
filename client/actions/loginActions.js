@@ -11,15 +11,23 @@ export const authSubmit = () => (dispatch, getState) => {
     userAuth.restrictions = getState().login.restrictions;
     axios
       .post('/signup', userAuth)
-      .then(({ status }) => {
-        if (status === 202) dispatch({ type: types.AUTH_SUBMIT });
+      .then((response) => {
+        console.log('this is the response status: ' + response.status);
+        if (response.status === 200) {
+          window.location = '/';
+          dispatch({ type: types.AUTH_SUBMIT });
+        }
       })
       .catch(console.error);
   } else {
     axios
-      .get('/login', userAuth)
-      .then(({ status }) => {
-        if (status === 200) dispatch({ type: types.AUTH_SUBMIT });
+      .post('/login', userAuth)
+      .then((response) => {
+        console.log('this is the response status: ' + response.status);
+        if (response.status) {
+          window.location = '/';
+          dispatch({ type: types.AUTH_SUBMIT });
+        }
       })
       .catch(console.error);
   }

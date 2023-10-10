@@ -1,14 +1,12 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const {env} = require('process');
+const { env } = require('process');
 
 module.exports = {
-  entry: [
-    './client/index.js'
-  ],
+  entry: ['./client/index.js'],
   output: {
-    path:path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
     filename: 'bundle.js',
   },
@@ -26,7 +24,7 @@ module.exports = {
     hot: true,
     // fallback to root for other urls
     historyApiFallback: true,
-    headers: { 'Access-Control-Allow-Origin': '*'},
+    headers: { 'Access-Control-Allow-Origin': '*' },
     /**
      * proxy is required in order to make api calls to
      * express server while using hot-reload webpack server
@@ -38,14 +36,26 @@ module.exports = {
         target: 'http://localhost:3000/',
         secure: false,
       },
-      'assets/**' : {
+      'assets/**': {
         target: 'http://localhost:3000/',
         secure: false,
-      },  
-    },  
+      },
+      '/signup/**': {
+        target: 'http://localhost:3000/',
+        secure: false,
+      },
+      '/login/**': {
+        target: 'http://localhost:3000/',
+        secure: false,
+      },
+      '/home/**': {
+        target: 'http://localhost:3000/',
+        secure: false,
+      },
+    },
   },
   module: {
-    rules : [
+    rules: [
       {
         test: /.(js|jsx)$/,
         exclude: /node_modules/,
