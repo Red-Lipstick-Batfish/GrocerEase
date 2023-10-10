@@ -7,22 +7,19 @@ const userController = require('./controller/userController');
 const cookieController = require('./controller/cookieController');
 const sessionController = require('./controller/sessionController');
 const apiController = require('./controller/apiController');
-const { env } = require('process');
+require('dotenv').config();
 
 const app = express();
 const PORT = 3000;
 
-const MONGO_URI = env.MONGO_URI;
+const MONGO_URI = process.env.MONGO_URI;
 
 mongoose
-  .connect(
-    env.MONGO_URI,
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      dbName: 'GrocerEase',
-    }
-  )
+  .connect(MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    dbName: 'GrocerEase',
+  })
   .then(() => console.log('Connected to Mongo DB'))
   .catch((err) => console.log(err));
 
@@ -59,7 +56,9 @@ app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../client/index.html'));
 });
 
-app.post('/api', apiController.getData, (req, res) => {
+//api fetch request => send to api controller and fetching data
+app.get('/api', (req, res) => {
+  console.log('-----------------Ingredients: ', res.locals.ingredients);
   res.status(200).json(res.locals);
 });
 

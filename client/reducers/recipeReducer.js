@@ -24,7 +24,7 @@ const recipeReducer = (state = initialState, action) => {
       ...state,
       ingr: ingrArray
     };
-  case types.REMOVE_INGR:
+    //case types.REMOVE_INGR:
     // const ingrArray = [...state.ingr];
     // ingrArray.push(state.currIngr);
     // return {
