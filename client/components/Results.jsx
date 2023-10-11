@@ -28,6 +28,7 @@ const Result = ({
         </ul>
         <p>Serving Size: {servingSize} </p>
         <a href={instructions}> Instructions Link </a>
+        
       </div>
     );
   }
