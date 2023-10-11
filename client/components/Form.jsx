@@ -13,16 +13,11 @@ const Form = ({
   removeIngr,
   currIngr,
 }) => {
-  // const ingrComponentArr = ingr.map((el, idx) => {
-  //   <Ingredient
-  //     value={ingr[el]}
-  //     id={'ingredient' + idx}
-  //   />;
-  // });
 
   return (
     <div id='form-container'>
-      <form onSubmit={(e) => apiSubmit()}>
+      <form onSubmit={(e) => {e.preventDefault(),
+        apiSubmit()}}>
         <div id='ingredient-input-container'>
           <label htmlFor='ingredient'>Include this ingredient:</label>
           <input

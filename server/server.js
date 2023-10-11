@@ -58,7 +58,8 @@ app.get('/', (req, res) => {
 
 //api fetch request => send to api controller and fetching data
 app.get('/api', apiController.getData , (req, res) => {
-  res.status(200).json(res.locals);
+  if(res.locals.status === 200) return res.status(200).json(res.locals); //if recipe is found
+  else if(res.locals.status === 204) res.sendStatus(204); // not found recipe
 });
 
 
