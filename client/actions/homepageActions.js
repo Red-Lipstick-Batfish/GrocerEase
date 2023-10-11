@@ -1,9 +1,6 @@
 import * as types from '../constants/actionTypes.js';
 import axios from 'axios';
 import cookie from 'cookie';
-const fetchSync = require('sync-fetch')
-
-
 
 export const apiSubmit = () => (dispatch, getState) => {
   const apiReq = {};
@@ -12,46 +9,28 @@ export const apiSubmit = () => (dispatch, getState) => {
   apiReq.cuisineType = getState().recipe.cuisineType;
   apiReq.mealType = getState().recipe.mealType;
   apiReq.dishType = getState().recipe.dishType;
-  axios.get('/api', {
-    params: {
-      ingr: apiReq.ingr,
-      cuisineType: apiReq.cuisineType,
-      mealType: apiReq.mealType, 
-      dishType: apiReq.dishType,
-    }
-  })
-  .then(({status, data}) => {
-    if(status === 200) {
-      //code for dispatch
-      dispatch({ type: types.DISPLAY_RECIPES, payload: data });
-    } else if (status === 204) {  //check if recipe not found
-      window.alert('No Recipe Found, try again.');
-    }
-  })
-  .catch(error => {
-    console.log('Error occurred: ', error);
-  });
-}
-  
-  // const response = fetchSync('/api', {
-  //   method: 'GET',
-  //   body: JSON.stringify(apiReq),
-  //   headers: {
-  //     'content-type' : 'application/json'
-  //   }
-
-  // const buildingURL = fetch('/api', {
-    
-  // })
-    
-  // console.log(response);
-  // axios
-  // .post('/api', apiReq) 
-  //  .then(({ status, data }) => {
-  //     if (status === 202) dispatch({ type: types.DISPLAY_RECIPES, payload: data });
-  //   })
-  //   .catch(console.error);
-//};
+  axios
+    .get('/api', {
+      params: {
+        ingr: apiReq.ingr,
+        cuisineType: apiReq.cuisineType,
+        mealType: apiReq.mealType,
+        dishType: apiReq.dishType,
+      },
+    })
+    .then(({ status, data }) => {
+      if (status === 200) {
+        //code for dispatch
+        dispatch({ type: types.DISPLAY_RECIPES, payload: data });
+      } else if (status === 204) {
+        //check if recipe not found
+        window.alert('No Recipe Found, try again.');
+      }
+    })
+    .catch((error) => {
+      console.log('Error occurred: ', error);
+    });
+};
 
 export const updateIngr = (data) => ({
   type: types.UPDATE_INGR,
