@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Nunito&display=swap');
+
+h1 {
+  font-family: 'Lobster', sans-serif;
+  text-align: center; /* Center the text horizontally within the body */
+  margin: 10; /* Adjust the margin as needed */
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $lightest;
+  color: $text-color;
+}
+
+//styling for navivation bar
+nav {
+  display: flex;
+  justify-content: space-around;
+  background-color: $medium;
+  border: 2px solid rgb(68, 67, 67);
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px rgb(168, 168, 168);
+  padding: 5px;
+  min-width: 300px;
+  /* Styling for list items within the navigation bar */
+  li {
+    list-style-type: none;
+  }
+  /* Styling for list items when hovered */
+  a {
+    text-decoration: none;
+    color: $text-color; /* Set your desired link text color */
+  }
+  a:hover {
+    color: $lightest;
+  }
+}
+
+//Styling for Form.jsx
+#form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  background-color: $light;
+  border: 2px solid black;
+  border-radius: 5%;
+  #ingredient-input-container {
+    display: flex;
+    gap: 10px;
+    input {
+      width: 200px;
+    }
+  }
+  .select-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    select {
+      padding: 3px;
+    }
+    button {
+      //search button
+      align-self: center;
+      margin-top: 20px;
+      min-width: 70px;
+      padding: 5px;
+    }
+  }
+}
+
+//styling for auth page
+
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: $light;
+  border: 2px solid black;
+  margin-top: 50px;
+  #login-wrap {
+    display: flex;
+    align-self: center;
+  }
+}
