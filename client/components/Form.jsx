@@ -22,7 +22,7 @@ const Form = ({
 
   return (
     <div>
-      <form>
+      <form onSubmit={(e) => apiSubmit()}>
         <label htmlFor='ingredient'>Include this ingredient:</label>
         <input
           id='ingredient'
@@ -67,7 +67,7 @@ const Form = ({
         </select>
         <br></br>
         <label htmlFor='mealType'>Meal type:</label>
-        <select id='mealType' name='mealType'>
+        <select id='mealType' name='mealType' onChange={(e) => updateMeal(e.target.value)}>
           <option value=''>--Choose an option--</option>
           <option value='Breakfast'>Breakfast</option>
           <option value='Lunch'>Lunch</option>
@@ -76,7 +76,7 @@ const Form = ({
         </select>
         <br></br>
         <label htmlFor='dishType'>Dish type:</label>
-        <select id='dishType' name='dishType'>
+        <select id='dishType' name='dishType' onChange={(e) => updateDish(e.target.value)}>
           <option value=''>--Choose an option--</option>
           <option value='Main Course'>Main</option>
           <option value='Starter'>Starter</option>

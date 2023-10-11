@@ -2,7 +2,8 @@ import * as types from '../constants/actionTypes.js';
 import axios from 'axios';
 import cookie from 'cookie';
 
-export const apiSubmit = () => (dispatch, getState) => {
+export const apiSubmit = (e) => (dispatch, getState) => {
+  // e.preventDefault();
   const apiReq = {};
   apiReq.user = document.cookie.SSID;
   apiReq.ingr = getState().recipe.ingr;
@@ -10,8 +11,8 @@ export const apiSubmit = () => (dispatch, getState) => {
   apiReq.mealType = getState().recipe.mealType;
   apiReq.dishType = getState().recipe.dishType;
   axios
-    .post('/api', apiReq)
-    .then(({ status, data }) => {
+    .get('/api', apiReq)
+    .then(({ status, data }) => {            
       if (status === 202) dispatch({ type: types.DISPLAY_RECIPES, payload: data });
     })
     .catch(console.error);

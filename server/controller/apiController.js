@@ -12,7 +12,7 @@ apiController.getData = async (req, res, next) => {
 
   // joins the ingredients
   let queries;
-  const ingredients = `&q=${ingr.join('%2C%20')}`;
+  const ingredients = `&q=${ingr}`; //.join('%2C%20')
 
   //https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=43a19eff&app_key=6e307c358a78b63cf5043926e57a6eca&ingr=4%2B&cuisineType=American&mealType=Lunch&dishType=Main%20course
   
