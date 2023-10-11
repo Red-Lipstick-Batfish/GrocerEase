@@ -2,7 +2,8 @@ import * as types from '../constants/actionTypes.js';
 import axios from 'axios';
 import cookie from 'cookie';
 
-export const apiSubmit = () => (dispatch, getState) => {
+export const apiSubmit = (e) => (dispatch, getState) => {
+  // e.preventDefault();
   const apiReq = {};
   apiReq.user = document.cookie.SSID;
   apiReq.ingr = getState().recipe.ingr;

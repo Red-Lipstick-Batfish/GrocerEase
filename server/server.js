@@ -57,8 +57,7 @@ app.get('/', (req, res) => {
 });
 
 //api fetch request => send to api controller and fetching data
-app.get('/api', (req, res) => {
-  console.log('-----------------Ingredients: ', res.locals.ingredients);
+app.get('/api', apiController.getData , (req, res) => {
   res.status(200).json(res.locals);
 });
 
