@@ -61,6 +61,7 @@ app.get('/api', apiController.getData , (req, res) => {
   res.status(200).json(res.locals);
 });
 
+
 // app.use('*', (req,res) => {
 //   res.status(404).send('Not Found');
 // });

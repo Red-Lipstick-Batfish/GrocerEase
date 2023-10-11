@@ -12,7 +12,7 @@ export const apiSubmit = (e) => (dispatch, getState) => {
   apiReq.dishType = getState().recipe.dishType;
   axios
     .get('/api', apiReq)
-    .then(({ status, data }) => {            
+    .then(({ status, data }) => {
       if (status === 202) dispatch({ type: types.DISPLAY_RECIPES, payload: data });
     })
     .catch(console.error);
